@@ -1,6 +1,5 @@
 package com.thssh.kymjsblog.base;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,10 +20,10 @@ import retrofit2.Retrofit;
  * @data 2017/06/20
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements IActivityView {
     private static final String TAG = "BaseActivity";
 
-    protected GlobalApplication application;
+    protected GlobalApplication mApplication;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class BaseActivity extends AppCompatActivity {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
         super.onCreate(savedInstanceState);
-        application = (GlobalApplication) getApplication();
+        mApplication = (GlobalApplication) getApplication();
     }
 
     /**
@@ -77,18 +76,30 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected Retrofit getGlobalRetrofit(){
-        return application.gRetrofit;
+        return mApplication.gRetrofit;
     }
 
     protected OkHttpClient getGlobalHttpClient(){
-        return application.gClient;
+        return mApplication.gClient;
     }
 
-    protected void toast(String text){
+    @Override
+    public GlobalApplication getGApplication() {
+        return (GlobalApplication)getApplication();
+    }
+
+    @Override
+    public void toast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
-    protected void toast(int resid){
+    @Override
+    public void toast(int resid) {
         Toast.makeText(this, resid, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void finishActivity() {
+        this.finish();
     }
 }

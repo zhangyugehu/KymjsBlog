@@ -6,6 +6,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.thssh.kymjsblog.base.PhoneInfo;
 import com.thssh.kymjsblog.service.Api;
 import com.thssh.kymjsblog.utils.AppUtils;
+import com.thssh.library.image.ImageLoader;
+import com.thssh.library.image.impl.GlideImageloader;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -30,6 +32,11 @@ public class GlobalApplication extends Application {
         initPhoneInfo();
         initOkHttpClient();
         initRetrofit();
+        initImageloader();
+    }
+
+    private void initImageloader() {
+        ImageLoader.getInstance().init(new GlideImageloader());
     }
 
     private void initPhoneInfo() {

@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
  * @data 2017/06/20
  */
 
-public class SkinActivity extends BaseActivity {
+public class BaseSkinActivity extends BaseActivity implements IActivityView {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

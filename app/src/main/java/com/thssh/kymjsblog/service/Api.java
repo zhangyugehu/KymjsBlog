@@ -1,5 +1,6 @@
 package com.thssh.kymjsblog.service;
 
+import com.thssh.kymjsblog.bean.BlogBean;
 import com.thssh.kymjsblog.bean.SplashImageBean;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface Api {
      * @return
      */
     @GET("splash") Observable<List<SplashImageBean>> getSplashIamge();
+
+    @GET("oslab") Observable<BlogBean> getBlogList();
+
+
 }
