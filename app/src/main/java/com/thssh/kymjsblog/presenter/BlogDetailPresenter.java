@@ -1,7 +1,7 @@
 package com.thssh.kymjsblog.presenter;
 
 import com.thssh.kymjsblog.base.AbsFragmentPresenter;
-import com.thssh.kymjsblog.contract.BlogDetailContract;
+import com.thssh.kymjsblog.contract.BlogDetailFragmentContract;
 
 /**
  * @author zhangyugehu
@@ -10,10 +10,11 @@ import com.thssh.kymjsblog.contract.BlogDetailContract;
  */
 
 public class BlogDetailPresenter extends
-        AbsFragmentPresenter<BlogDetailContract.View, BlogDetailContract.Model> {
+        AbsFragmentPresenter<BlogDetailFragmentContract.View, BlogDetailFragmentContract.Model>
+        implements BlogDetailFragmentContract.Presenter{
 
     @Override
-    protected BlogDetailContract.Model bindModel() {
+    protected BlogDetailFragmentContract.Model bindModel() {
         return null;
     }
 

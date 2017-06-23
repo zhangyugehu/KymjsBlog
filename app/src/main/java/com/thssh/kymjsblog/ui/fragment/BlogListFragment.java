@@ -8,10 +8,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.thssh.kymjsblog.R;
-import com.thssh.kymjsblog.base.AbsPresenterFragment;
+import com.thssh.kymjsblog.bean.BlogItemBean;
 import com.thssh.kymjsblog.contract.BlogListFragmentContract;
 import com.thssh.kymjsblog.presenter.BlogListPresenter;
-import com.thssh.kymjsblog.ui.activity.MainActivity;
 import com.thssh.kymjsblog.ui.adapter.BlogListAdapter;
 import com.thssh.kymjsblog.ui.listener.OnItemClickListener;
 
@@ -21,7 +20,7 @@ import com.thssh.kymjsblog.ui.listener.OnItemClickListener;
  * @data 2017/06/21
  */
 
-public class BlogListFragment extends AbsPresenterFragment<MainActivity, BlogListPresenter, BlogListFragmentContract.OnEventsListener>
+public class BlogListFragment extends EventsFragment<BlogListPresenter>
         implements BlogListFragmentContract.View{
 
     public static final String TAG = "BlogListFragment";
@@ -50,6 +49,8 @@ public class BlogListFragment extends AbsPresenterFragment<MainActivity, BlogLis
     @Override
     protected void onViewReady() {
         mPresenter.loadData();
+        mListener.onFragmentSetBackVisable(false);
+        mListener.onFragmentSetCloseVisable(false);
     }
 
     @Override
@@ -77,7 +78,12 @@ public class BlogListFragment extends AbsPresenterFragment<MainActivity, BlogLis
     }
 
     @Override
-    public void enterBlog(String link) {
-        mListener.enterBlogDetail(link);
+    public void enterBlog(BlogItemBean link) {
+        mListener.onListFragmentEnterBlogDetail(link);
+    }
+
+    @Override
+    public void setBarTitle(String title) {
+        mListener.onFragmentSetTitle(title);
     }
 }

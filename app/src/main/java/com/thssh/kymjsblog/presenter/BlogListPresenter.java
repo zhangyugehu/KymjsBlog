@@ -3,6 +3,7 @@ package com.thssh.kymjsblog.presenter;
 import android.util.Log;
 
 import com.thssh.kymjsblog.base.AbsFragmentPresenter;
+import com.thssh.kymjsblog.bean.BlogBean;
 import com.thssh.kymjsblog.bean.BlogItemBean;
 import com.thssh.kymjsblog.contract.BlogListFragmentContract;
 import com.thssh.kymjsblog.model.BlogListNetModel;
@@ -52,14 +53,17 @@ public class BlogListPresenter extends AbsFragmentPresenter<BlogListFragmentCont
         isRefresh = true;
         mModel.loadData(new BlogListFragmentContract.ModelListener() {
             @Override
-            public void onDataResponse(List<BlogItemBean> blogs) {
+            public void onDataResponse(BlogBean blogBean) {
+                if(isDetached){ return; }
                 if(isRefresh){ mDatas.clear(); }
-                mDatas.addAll(blogs);
+                mDatas.addAll(blogBean.getItem());
+                mView.setBarTitle(blogBean.getTitle());
                 mView.notifyAdapteDataChanged();
             }
 
             @Override
             public void onResponseFailure(String error) {
+                if(isDetached){ return; }
                 mView.toast(error);
             }
         });
@@ -69,8 +73,7 @@ public class BlogListPresenter extends AbsFragmentPresenter<BlogListFragmentCont
     public void onItemClick(int position) {
         if(checkDatas(position)) { return; }
         BlogItemBean itemBean = mDatas.get(position);
-        String link = itemBean.getLink();
-        mView.enterBlog(link);
+        mView.enterBlog(itemBean);
     }
 
     private boolean checkDatas(int position) {

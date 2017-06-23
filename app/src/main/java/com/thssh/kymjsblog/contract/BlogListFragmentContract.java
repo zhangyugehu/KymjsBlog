@@ -1,8 +1,8 @@
 package com.thssh.kymjsblog.contract;
 
-import com.thssh.kymjsblog.base.BaseEventsListener;
 import com.thssh.kymjsblog.base.BaseModel;
 import com.thssh.kymjsblog.base.IFragmentView;
+import com.thssh.kymjsblog.bean.BlogBean;
 import com.thssh.kymjsblog.bean.BlogItemBean;
 
 import java.util.List;
@@ -14,17 +14,12 @@ import java.util.List;
  */
 
 public class BlogListFragmentContract {
-    /**
-     * 和Activity通信桥梁
-     */
-    public interface OnEventsListener extends BaseEventsListener{
-
-        void enterBlogDetail(String link);
-    }
     public interface View extends IFragmentView{
         void notifyAdapteDataChanged();
 
-        void enterBlog(String link);
+        void enterBlog(BlogItemBean link);
+
+        void setBarTitle(String title);
     }
 
     public interface Presenter {
@@ -39,7 +34,7 @@ public class BlogListFragmentContract {
         void loadData(ModelListener listener);
     }
     public interface ModelListener{
-        void onDataResponse(List<BlogItemBean> blogs);
+        void onDataResponse(BlogBean blogs);
         void onResponseFailure(String error);
     }
 }

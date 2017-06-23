@@ -38,7 +38,7 @@ public class BlogListNetModel implements BlogListFragmentContract.Model{
                     @Override
                     protected void next(BlogBean blogs) {
                         if(blogs == null){ listener.onResponseFailure("blogs is null.");}
-                        listener.onDataResponse(blogs.getItem());
+                        listener.onDataResponse(blogs);
                     }
 
                     @Override
