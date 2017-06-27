@@ -8,10 +8,15 @@ import android.util.Log;
 import com.thssh.kymjsblog.GlobalApplication;
 import com.thssh.kymjsblog.base.AbsActivityPresenter;
 import com.thssh.kymjsblog.bean.SplashImageBean;
+import com.thssh.kymjsblog.bean.User;
 import com.thssh.kymjsblog.contract.SplashActivityContract;
+import com.thssh.kymjsblog.db.dao.UserDao;
 import com.thssh.kymjsblog.service.Api;
 import com.thssh.kymjsblog.service.ObserverAdapter;
 import com.thssh.kymjsblog.utils.ApiStringUtils;
+import com.thssh.library.sqlorm.IBaseDao;
+import com.thssh.library.sqlorm.SqlOrmManager;
+import com.thssh.library.sqlorm.exception.SqlOrmExecption;
 
 import java.util.List;
 
@@ -107,5 +112,18 @@ public class SplashPresenter extends AbsActivityPresenter<SplashActivityContract
         if(mTimeCounter != null) { mTimeCounter.cancel(); }
         mView.startMainActivity();
         mView.finishActivity();
+
+        try {
+            UserDao userDao = SqlOrmManager.getInstance().init(mView.getGApplication()).createDao(UserDao.class, User.class);
+//            userDao.insert(new User("zhangsan", 20, "male"));
+
+            List<User> query = userDao.newBuilder()
+//                    .columns("f_sex")
+//                    .columnArgs("male")
+                    .query();
+            Log.d(TAG, "skipTimer: " + query);
+        } catch (SqlOrmExecption e) {
+            e.printStackTrace();
+        }
     }
 }
