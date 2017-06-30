@@ -17,6 +17,7 @@ import com.thssh.kymjsblog.utils.ApiStringUtils;
 import com.thssh.library.sqlorm.IBaseDao;
 import com.thssh.library.sqlorm.SqlOrmManager;
 import com.thssh.library.sqlorm.exception.SqlOrmExecption;
+import com.thssh.umengshare.UmengShare;
 
 import java.util.List;
 
@@ -113,17 +114,18 @@ public class SplashPresenter extends AbsActivityPresenter<SplashActivityContract
         mView.startMainActivity();
         mView.finishActivity();
 
-        try {
-            UserDao userDao = SqlOrmManager.getInstance().init(mView.getGApplication()).createDao(UserDao.class, User.class);
-//            userDao.insert(new User("zhangsan", 20, "male"));
 
-            List<User> query = userDao.newBuilder()
-//                    .columns("f_sex")
-//                    .columnArgs("male")
-                    .query();
-            Log.d(TAG, "skipTimer: " + query);
-        } catch (SqlOrmExecption e) {
-            e.printStackTrace();
-        }
+//        try {
+//            UserDao userDao = SqlOrmManager.getInstance().init(mView.getGApplication()).createDao(UserDao.class, User.class);
+////            userDao.insert(new User("zhangsan", 20, "male"));
+//
+//            List<User> query = userDao.newBuilder()
+////                    .columns("f_sex")
+////                    .columnArgs("male")
+//                    .query();
+//            Log.d(TAG, "skipTimer: " + query);
+//        } catch (SqlOrmExecption e) {
+//            e.printStackTrace();
+//        }
     }
 }

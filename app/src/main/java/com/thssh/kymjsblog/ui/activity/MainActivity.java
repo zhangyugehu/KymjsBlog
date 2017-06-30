@@ -16,6 +16,7 @@ import com.thssh.kymjsblog.contract.MainActivityContract;
 import com.thssh.kymjsblog.presenter.MainPresenter;
 import com.thssh.kymjsblog.ui.fragment.BlogDetailFragment;
 import com.thssh.kymjsblog.ui.fragment.BlogListFragment;
+import com.thssh.umengshare.UmengShare;
 
 public class MainActivity extends AbsFragmentActivity<MainPresenter>
         implements MainActivityContract.View,
@@ -39,6 +40,7 @@ public class MainActivity extends AbsFragmentActivity<MainPresenter>
         mBlogListFragment = new BlogListFragment();
         mBlogListFragment.setOnEventListener(this);
         addFragment(mBlogListFragment, BlogListFragment.TAG, false);
+
     }
 
     private void initEvents() {
