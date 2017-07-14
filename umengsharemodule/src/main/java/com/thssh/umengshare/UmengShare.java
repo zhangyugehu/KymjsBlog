@@ -25,8 +25,8 @@ public class UmengShare {
         ShareAction mShareAction = new ShareAction(activity).setDisplayList(
                 SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN_FAVORITE,
                 SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE)
-                .addButton("umeng_sharebutton_copy", "umeng_sharebutton_copy", "umeng_socialize_copy", "umeng_socialize_copy")
-                .addButton("umeng_sharebutton_copyurl", "umeng_sharebutton_copyurl", "umeng_socialize_copyurl", "umeng_socialize_copyurl")
+//                .addButton("umeng_sharebutton_copy", "umeng_sharebutton_copy", "umeng_socialize_copy", "umeng_socialize_copy")
+//                .addButton("umeng_sharebutton_copyurl", "umeng_sharebutton_copyurl", "umeng_socialize_copyurl", "umeng_socialize_copyurl")
                 .setShareboardclickCallback(new ShareBoardlistener() {
                     @Override
                     public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
@@ -34,7 +34,6 @@ public class UmengShare {
                             Toast.makeText(activity, "复制文本按钮", Toast.LENGTH_LONG).show();
                         } else if (snsPlatform.mShowWord.equals("umeng_sharebutton_copyurl")) {
                             Toast.makeText(activity, "复制链接按钮", Toast.LENGTH_LONG).show();
-
                         } else {
                             UMWeb web = new UMWeb("http://www.baidu.com");
                             web.setTitle("来自分享面板标题");

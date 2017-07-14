@@ -14,9 +14,11 @@ import com.thssh.kymjsblog.bean.BlogItemBean;
 import com.thssh.kymjsblog.contract.EventsFragmentContract;
 import com.thssh.kymjsblog.contract.MainActivityContract;
 import com.thssh.kymjsblog.presenter.MainPresenter;
+import com.thssh.kymjsblog.socialize.SocializeManager;
 import com.thssh.kymjsblog.ui.fragment.BlogDetailFragment;
 import com.thssh.kymjsblog.ui.fragment.BlogListFragment;
 import com.thssh.umengshare.UmengShare;
+import com.umeng.socialize.UMShareAPI;
 
 public class MainActivity extends AbsFragmentActivity<MainPresenter>
         implements MainActivityContract.View,
@@ -119,6 +121,12 @@ public class MainActivity extends AbsFragmentActivity<MainPresenter>
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void onListFragmentEnterBlogDetail(BlogItemBean itemBean) {
         if(mBlogDetailFragment == null){
             mBlogDetailFragment = BlogDetailFragment.newInstance(itemBean);
@@ -128,4 +136,10 @@ public class MainActivity extends AbsFragmentActivity<MainPresenter>
         mBlogDetailFragment.setOnEventListener(this);
         addFragmentToStrack(mBlogDetailFragment, BlogDetailFragment.TAG);
     }
+
+    @Override
+    public void openUmengShare() {
+        UmengShare.share(this);
+    }
+
 }

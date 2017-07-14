@@ -1,4 +1,4 @@
-package com.umeng.soexample;
+package com.thssh.kymjsblog.wxapi;
 
 //import com.umeng.socialize.media.WBShareCallBackActivity;
 

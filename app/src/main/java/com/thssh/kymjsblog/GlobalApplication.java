@@ -3,6 +3,7 @@ package com.thssh.kymjsblog;
 import android.app.Application;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.mob.MobSDK;
 import com.thssh.kymjsblog.base.PhoneInfo;
 import com.thssh.kymjsblog.service.Api;
 import com.thssh.kymjsblog.utils.AppUtils;
@@ -47,14 +48,20 @@ public class GlobalApplication extends Application {
         PlatformConfig.setDropbox("oz8v5apet3arcdy","h7p2pjbzkkxt02a");
         PlatformConfig.setYnote("9c82bf470cba7bd2f1819b0ee26f86c6ce670e9b");
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
         initUmeng();
+        initShareSdk();
         initPhoneInfo();
         initOkHttpClient();
         initRetrofit();
         initImageloader();
+    }
+
+    private void initShareSdk() {
+        MobSDK.init(this);
     }
 
     private void initUmeng() {
@@ -76,9 +83,9 @@ public class GlobalApplication extends Application {
 
     private void initOkHttpClient() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(BuildConfig.DEBUG ?
-                HttpLoggingInterceptor.Level.BODY :
-                HttpLoggingInterceptor.Level.NONE);
+//        httpLoggingInterceptor.setLevel(BuildConfig.DEBUG ?
+//                HttpLoggingInterceptor.Level.BODY :
+//                HttpLoggingInterceptor.Level.NONE);
         gClient = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .build();

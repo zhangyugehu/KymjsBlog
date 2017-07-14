@@ -1,1 +1,1 @@
-include ':app', ':library', ':umengsharemodule'
+include ':app', ':library', ':umengsharemodule', ':module_sharesdk'

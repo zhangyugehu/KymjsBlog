@@ -3,6 +3,8 @@ package com.thssh.kymjsblog.contract;
 import com.thssh.kymjsblog.base.BaseEventsListener;
 import com.thssh.kymjsblog.bean.BlogItemBean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author zhangyugehu
@@ -12,7 +14,7 @@ import com.thssh.kymjsblog.bean.BlogItemBean;
 
 public class EventsFragmentContract {
 
-    public interface OnEventsListener extends BaseEventsListener {
+    public interface OnEventsListener extends BaseEventsListener, Serializable {
 
         /**
          * @link EventsFragmentContract
@@ -36,6 +38,8 @@ public class EventsFragmentContract {
         void onFragmentSetCloseVisable(boolean flag);
 
         void onListFragmentEnterBlogDetail(BlogItemBean itemBean);
+
+        void openUmengShare();
     }
 
 }

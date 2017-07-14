@@ -17,7 +17,7 @@ import com.thssh.kymjsblog.GlobalApplication;
  * @data 2017/06/22
  */
 
-public abstract class AbsPresenterFragment<A extends BaseActivity, P extends AbsFragmentPresenter, L extends BaseEventsListener> 
+public abstract class AbsPresenterFragment<A extends BaseActivity, P extends AbsFragmentPresenter, L extends BaseEventsListener>
         extends BaseFragment<A> implements IFragmentView {
 //    onAttach:
 //    onCreate:
@@ -34,14 +34,16 @@ public abstract class AbsPresenterFragment<A extends BaseActivity, P extends Abs
 //    onDetach
     private static final String TAG = "AbsPresenterFragment";
 
+    private static final String SAVED_PRESENTER = "saved_presenter";
+
     protected P mPresenter;
     protected L mListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.d(TAG, "onAttach: bindPresenter");
         mPresenter = bindPresenter();
+        Log.d(TAG, "onAttach: bindPresenter " + mPresenter.hashCode());
     }
 
     @Override
